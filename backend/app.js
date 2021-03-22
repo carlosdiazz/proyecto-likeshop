@@ -11,7 +11,7 @@ const app = express();
 //Importamos la Rutas
 const productsRouter = require('./routes/products');
 const usersRouter = require('./routes/orders');
-
+app.use(express.json())
 
 //Usamos la rutas
 app.use('/api/products', productsRouter);
