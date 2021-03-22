@@ -10,12 +10,12 @@ const app = express();
 
 //Importamos la Rutas
 const productsRouter = require('./routes/products');
-const usersRouter = require('./routes/users');
+const usersRouter = require('./routes/orders');
 
 
 //Usamos la rutas
 app.use('/api/products', productsRouter);
-app.use('/api/users', usersRouter);
+app.use('/api/orders', usersRouter);
 
 
 
