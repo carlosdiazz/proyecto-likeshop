@@ -70,12 +70,12 @@
       <!-- Products tab & slick -->
       <div class="col-md-12">
         <div class="row">
-          <div class="col-md-4 col-sm-6" >
+          <div class="col-md-4 col-sm-6" *ngFor="let p of products">
             <div class="card my-2">
-              <img rel="" alt="" width="200px" class="card-img-top" >
+              <img [src]="p.image" alt="{{p.name}}" width="200px" class="card-img-top"  style="cursor: pointer;" (click)="selectProduct(p.id)">
               <div class="card-header">
                 <div class="card-title">
-                  <p>tiyuki</p>
+                  <p>{{p.name}}</p>
                 </div>
               </div>
               <div class="card-body">
