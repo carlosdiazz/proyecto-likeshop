@@ -41,7 +41,7 @@ router.get('/', function (req,res) {
         'p.title as name',
         'p.price',
         'p.quantity',
-        //'p.description',
+        'p.description',
         'p.image',
         'p.id'
       ])

@@ -17,12 +17,12 @@ export class ProductService {
     console.log('Hola');
   }
 
-  getAllProducts(numberOfResults= 50 ) {
+  getAllProducts(numberOfResults= 6 ) {
     return this.http.get(this.SERVER_URL + '/products', {
       params : {
         limit : numberOfResults.toString()
       }
-    })
+    });
   }
 
 }
