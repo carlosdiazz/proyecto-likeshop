@@ -121,7 +121,7 @@ export class CartService {
 
 
           this.cartDataClient.prodData[index].incart = this.cartDataServer.data[index].numInCart;
-          this.toast.info(`${prod.name} quantity updated in the cart.`, "Product Updated", {
+          this.toast.info(`${prod.name} Cantidad actualizada en el carrito.`, "Producto Actualizado", {
             timeOut: 1500,
             progressBar: true,
             progressAnimation: 'increasing',
@@ -138,7 +138,7 @@ export class CartService {
             incart: 1,
             id: prod.id
           });
-          this.toast.success(`${prod.name} added to the cart.`, "Product Added", {
+          this.toast.success(`${prod.name} añadido en el carrito.`, "Producto Añadido", {
             timeOut: 1500,
             progressBar: true,
             progressAnimation: 'increasing',
@@ -190,7 +190,7 @@ export class CartService {
     /*    console.log(this.cartDataClient.prodData[index].prodId);
         console.log(this.cartDataServer.data[index].product.id);*/
 
-    if (window.confirm('Are you sure you want to delete the item?')) {
+    if (window.confirm('¿Estás segura de que quieres eliminar el artículo?')) {
       this.cartDataServer.data.splice(index, 1);
       this.cartDataClient.prodData.splice(index, 1);
       this.CalculateTotal();
@@ -226,14 +226,14 @@ export class CartService {
 
   CheckoutFromCart(userId: Number) {
 
-    this.httpClient.post(`${this.ServerURL}orders/payment`, null).subscribe((res: { success: Boolean }) => {
+    this.httpClient.post(`${this.ServerURL}/orders/payment`, null).subscribe((res: { success: Boolean }) => {
       console.clear();
 
       if (res.success) {
 
 
         this.resetServerData();
-        this.httpClient.post(`${this.ServerURL}orders/new`, {
+        this.httpClient.post(`${this.ServerURL}/orders/new`, {
           userId: userId,
           products: this.cartDataClient.prodData
         }).subscribe((data: OrderConfirmationResponse) => {
@@ -261,7 +261,7 @@ export class CartService {
       } else {
         this.spinner.hide().then();
         this.router.navigateByUrl('/checkout').then();
-        this.toast.error(`Sorry, failed to book the order`, "Order Status", {
+        this.toast.error(`Sorry, failed to book the order`, "Estado de la orden", {
           timeOut: 1500,
           progressBar: true,
           progressAnimation: 'increasing',
