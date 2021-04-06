@@ -1,28 +1,28 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {ProductService} from './product.service';
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  private products: any[] = [];
-  private serverUrl =  environment.SERVER_URL;
+  products: ProductResponseModel[] = [];
+  ServerURL = environment.SERVER_URL;
 
-  constructor(private http: HttpClient,
-              private productService: ProductService,
-              ) { }
+  constructor(private http: HttpClient) {
+  }
+
+
+  getSingleOrder(orderId: Number) {
+    return this.http.get<ProductResponseModel[]>(`${this.ServerURL}orders/${orderId}`).toPromise();
+  }
 }
 
-
-
-
 interface ProductResponseModel {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  quantityOrdered: number;
-  image: string;
+  id: Number;
+  title: String;
+  description: String;
+  price: Number;
+  quantityOrdered: Number;
+  image: String;
 }
