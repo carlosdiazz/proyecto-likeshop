@@ -5,7 +5,7 @@
   type="ball-clip-rotate-pulse"
   fullScreen="true"
 >
-  <p style="font-size: 20px; color: black">Orden de reserva</p>
+  <p style="font-size: 20px; color: black">Procesando compra</p>
 </ngx-spinner>
 
 
@@ -104,7 +104,7 @@
                         Aceptar los terminos y Condiciones <a href="#">.</a>
                     </label>
                 </div>
-                <button type="submit" class="btn-outline-danger btn-sm my-2 btn-block" [disabled]="cartTotal <= 0 " (click)="onCheckout()">Place order</button>
+                <button type="submit" class="btn btn-success btn-block" [disabled]="cartTotal <= 0 " (click)="onCheckout()">Pagar Ahora</button>
             </div>
             <!-- /Order Details -->
         </div>
