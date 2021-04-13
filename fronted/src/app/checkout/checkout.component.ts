@@ -37,4 +37,10 @@ export class CheckoutComponent implements OnInit {
  
    }
 
+   enviar(){
+     console.log("Paso")
+    this.onCheckout();
+  }
+
+
   }
