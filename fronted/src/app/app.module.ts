@@ -35,7 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     NgxSpinnerModule,
     ToastrModule.forRoot(),
-    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
