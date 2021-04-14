@@ -1,14 +1,11 @@
 const Mysqli = require('mysqli')
 
-
-
 let conn = new Mysqli( {
     host:'localhost',
     post: 3306,
     user: 'root',
     pass: '',
-    db: 'mega_shop'
-
+    db: 'tienda'
 });
 
 let db = conn.emit(false, '');
