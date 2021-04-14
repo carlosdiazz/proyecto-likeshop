@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CartModelServer } from '../models/cart.model';
@@ -7,7 +6,7 @@ import { CartService } from '../services/cart.service';
 import { OrderService } from '../services/order.service';
 
 declare var paypal;
-
+var prec;
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -19,36 +18,31 @@ export class CheckoutComponent implements OnInit {
 
   producto={
     descripcion: "Nada de nada",
-    precio: "200"
+    precio: "1"
   }
 
   cartTotal: Number;
   cartData: CartModelServer;
 
-  data: FormGroup;
+
   
   constructor(private cartService: CartService,
               private orderService: OrderService,
               private router: Router,
-              private spinner: NgxSpinnerService,
-              private builder: FormBuilder
-              ) {
-                this.data = this.builder.group({
-                  nombre: ['',Validators.required],
-                  apellido: ['',Validators.required],
-                  email: ['',Validators.compose([Validators.email, Validators.required])],
-                  direccion: ['',Validators.required],
-                  ciudad: ['',Validators.required],
-                  pais: ['',Validators.required],
-                  codigo_de_area: ['',Validators.required],
-                  telefono: ['',Validators.required]
-                  
-                })
-               }
+              private spinner: NgxSpinnerService
+              ) {}
 
   ngOnInit(): void {
     this.cartService.cartDataObs$.subscribe(data => this.cartData= data);
     this.cartService.cartTotal$.subscribe(total => this.cartTotal= total);
+
+    var string = this.cartTotal.toString();
+
+  if(string === "0"){
+      prec = this.producto.precio
+  }else{
+      prec = this.cartTotal
+  }
     paypal
     .Buttons({
       createOrder: (data, actions)=>{
@@ -59,14 +53,22 @@ export class CheckoutComponent implements OnInit {
               amount:{
                 currency_code: "USD",
                 //SI cart total es igual a 1 va a valer 1, si no es vale la cantidad normal
-                value: this.cartTotal
+                value: prec
               }
             }
           ]
         })
-      }
+      },
+      onApprove: (data, actions) => {
+        this.onCheckout()
+        console.log('onClick');
+        
+    },
+    
     })
+
     .render( this.paypalElment.nativeElement);
+    //this.onCheckout()
   }
 
   onCheckout() {

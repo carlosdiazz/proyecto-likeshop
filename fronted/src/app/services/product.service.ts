@@ -19,7 +19,7 @@ export class ProductService {
     console.log('Hola');
   }
 
-  getAllProducts(numberOfResults= 6 ): Observable<serverResponse> {
+  getAllProducts(numberOfResults= 12 ): Observable<serverResponse> {
     return this.http.get<serverResponse>(this.SERVER_URL + '/products', {
       params : {
         limit : numberOfResults.toString()

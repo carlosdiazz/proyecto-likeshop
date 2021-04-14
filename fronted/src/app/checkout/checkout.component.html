@@ -9,98 +9,49 @@
 </ngx-spinner>
 
 
-<!-- SECTION -->
-<div class="section container" *ngIf="cartData.total > 0">
-    <!-- container -->
+<div class="container" *ngIf="cartData.total > 0" >
     <div class="row">
-        <!-- row -->
-        <div class="col-sm-12">
-            <!-- PARA PODERLO INICIAR QUITO ESTO< UNA VEZ INICIADO LO PONGO DE NUEVO -->
-            <!-- [formGroup]="data" -->
-            <form class="col-sm-12" (ngSubmit)="enviar(data.value)">
-                <div class="col-sm-6">
-                    <!-- Billing Details -->
-                    <div class="billing-details">
-                        <div class="section-title">
-                            <h3 class="title">Dirección de Envio</h3>
-                        </div>
-                        <div class="form-group">
-                            <input formControlName="nombre" class="input" type="text"  placeholder="Primer Nombre">
-                        </div>
-                        <div class="form-group">
-                            <input formControlName="apellido" class="input" type="text"  placeholder="Apellido">
-                        </div>
-                        <div class="form-group">
-                            <input formControlName="email" class="input" type="email"  placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <input formControlName="direccion" class="input" type="text"  placeholder="Direccion">
-                        </div>
-                        <div class="form-group">
-                            <input formControlName="ciudad" class="input" type="text"  placeholder="Ciudad">
-                        </div>
-                        <div class="form-group">
-                            <input formControlName="pais" class="input" type="text"  placeholder="Pais">
-                        </div>
-                        <div class="form-group">
-                            <input formControlName="codigo_de_area" class="input" type="text"  placeholder="Codigo de Area">
-                        </div>
-                        <div class="form-group">
-                            <input formControlName="telefono" class="input" type="text"  placeholder="Telefono">
-                        </div>
-                      
-                    </div>
-                </div>  
-
-                <div class=" col-sm-6">
+        <div class=" col-sm-6">
                         
-                    <div class="section-title">
-                        <h3 class="title">Tu Orden</h3>
-                    </div>
-                     
-                    <div class="order-summary">
-                        <div class="order-col">
-                            <div><strong>PRODUCTOS</strong></div>
-                            <div><strong>TOTAL</strong></div>
-                        </div>
-                        <div class="order-products">
-                            <div class="order-col" *ngFor="let c of cartData.data;">
-                              <div>{{c.numInCart}}x {{c.product.name}}</div>
-                              <div>{{(c.product.price*c.numInCart) | currency:'USD'}}</div>
-                            </div>
-                          </div>
-                        <div class="order-col">
-                            <div>Shiping</div>
-                            <div><strong>FREE</strong></div>
-                        </div>
-                        <div class="order-col">
-                            <div><strong>TOTAL</strong></div>
-                            <div><strong class="order-total">{{cartTotal | currency:'USD' }}</strong></div>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-success btn-block" [disabled]="cartTotal <= 0 " [disabled]="data.invalid" >Pagar Ahora </button>
+            <div class="section-title">
+                <h3 class="title">Tu Orden</h3>
+            </div>
+             
+            <div class="order-summary">
+                <div class="order-col">
+                    <div><strong>PRODUCTOS</strong></div>
+                    <div><strong>TOTAL</strong></div>
                 </div>
-                
-            </form>
-
-
+                <div class="order-products">
+                    <div class="order-col" *ngFor="let c of cartData.data;">
+                      <div>{{c.numInCart}}x {{c.product.name}}</div>
+                      <div>{{(c.product.price*c.numInCart) | currency:'USD'}}</div>
+                    </div>
+                  </div>
+                <div class="order-col">
+                    <div>Shiping</div>
+                    <div><strong>FREE</strong></div>
+                </div>
+                <div class="order-col">
+                    <div><strong>TOTAL</strong></div>
+                    <div><strong class="order-total">{{cartTotal | currency:'USD' }}</strong></div>
+                </div>
+            </div>
+            
+            
         </div>
-        <!-- /row -->
     </div>
-    <!-- /container -->
+
 
 </div>
-
 
 <div *ngIf="cartData.total <= 0">
     <div class="container">
         <div class="row">
             <div class="col col-sm-6 mt-5">
                 <h4 class="text-center">El carrito esta Vacio</h4>
-                <button class="btn btn-primary btn-block btn-lg mt-3" routerLink="/">Ir a la Tienda</button>
-                <img class="d-flex  align-self-center container" src="../../assets/img/carrito_vacio.png" alt="Carrito" width="50%" >
-                <h3 class="text-center">Hacer una donacion de 1$ USD</h3>
+                <button class="btn btn-primary btn-block btn-lg mt-3 " routerLink="/">Ir a la Tienda</button>
+                <h5 class="mt-5 text-justify">Para nosotros es un placer servirte, puedes demostrarnos tu apresio haciendo una donacion de 1 $ USD LIKESHOP</h5>
             </div>
 
 
@@ -111,7 +62,7 @@
 
   <!-- /SECTION -->
 <div class="container mt-5" >
-    <div class="row" >
+    <div class="rowd" >
         <div class="col col-sm-6">
             <div #paypal ></div>
         </div>
