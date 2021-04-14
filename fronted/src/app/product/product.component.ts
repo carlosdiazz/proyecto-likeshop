@@ -47,7 +47,7 @@ export class ProductComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
 
-    // Product Main img Slick
+    // Producto principal img 
     $('#product-main-img').slick({
       infinite: true,
       speed: 300,
@@ -57,7 +57,7 @@ export class ProductComponent implements AfterViewInit, OnInit {
       asNavFor: '#product-imgs',
     });
 
-    // Product imgs Slick
+    // Imágenes de producto Slick
     $('#product-imgs').slick({
       slidesToShow: 3,
       slidesToScroll: 1,

@@ -19,8 +19,8 @@ export class CartService {
 
   ServerURL = environment.SERVER_URL;
 
-  private cartDataClient: CartModelPublic = {prodData: [{incart: 0, id: 0}], total: 0};  // This will be sent to the backend Server as post data
-  // Cart Data variable to store the cart information on the server
+  private cartDataClient: CartModelPublic = {prodData: [{incart: 0, id: 0}], total: 0};  // Esto se enviará al servidor backend como datos de publicación
+  // Variable de datos del carrito para almacenar la información del carrito en el servidor
   private cartDataServer: CartModelServer = {
     data: [{
       product: undefined,
@@ -30,7 +30,7 @@ export class CartService {
   };
 
   cartTotal$ = new BehaviorSubject<Number>(0);
-  // Data variable to store the cart information on the client's local storage
+ // Variable de datos para almacenar la información del carrito en el almacenamiento local del cliente
 
   cartDataObs$ = new BehaviorSubject<CartModelServer>(this.cartDataServer);
 
@@ -48,9 +48,9 @@ export class CartService {
     let info: CartModelPublic = JSON.parse(localStorage.getItem('cart'));
 
     if (info !== null && info !== undefined && info.prodData[0].incart !== 0) {
-      // assign the value to our data variable which corresponds to the LocalStorage data format
+      // asigna el valor a nuestra variable de datos que corresponde al formato de datos LocalStorage
       this.cartDataClient = info;
-      // Loop through each entry and put it in the cartDataServer object
+      // Recorre cada entrada y colócala en el objeto cartDataServer
       this.cartDataClient.prodData.forEach(p => {
         this.productService.getSingleProduct(p.id).subscribe((actualProdInfo: ProductModelServer) => {
           if (this.cartDataServer.data[0].numInCart === 0) {
@@ -87,7 +87,7 @@ export class CartService {
   AddProductToCart(id: number, quantity?: number) {
 
     this.productService.getSingleProduct(id).subscribe(prod => {
-      // If the cart is empty
+      // Si el carrito está vacío
       if (this.cartDataServer.data[0].product === undefined) {
         this.cartDataServer.data[0].product = prod;
         this.cartDataServer.data[0].numInCart = quantity !== undefined ? quantity : 1;
@@ -97,18 +97,18 @@ export class CartService {
         this.cartDataClient.total = this.cartDataServer.total;
         localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
         this.cartDataObs$.next({...this.cartDataServer});
-        this.toast.success(`${prod.name} added to the cart.`, "Product Added", {
+        this.toast.success(`${prod.name} añadido correctamente.`, "Producto añadido ", {
           timeOut: 1500,
           progressBar: true,
           progressAnimation: 'increasing',
           positionClass: 'toast-top-right'
         })
-      }  // END of IF
-      // Cart is not empty
+      }  
+      // El carrito no está vacío
       else {
         let index = this.cartDataServer.data.findIndex(p => p.product.id === prod.id);
 
-        // 1. If chosen product is already in cart array
+        // 1. Si el producto elegido ya está en la matriz del carrito
         if (index !== -1) {
 
           if (quantity !== undefined && quantity <= prod.quantity) {
@@ -128,7 +128,7 @@ export class CartService {
             positionClass: 'toast-top-right'
           })
         }
-        // 2. If chosen product is not in cart array
+
         else {
           this.cartDataServer.data.push({
             product: prod,
@@ -149,7 +149,7 @@ export class CartService {
         this.cartDataClient.total = this.cartDataServer.total;
         localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
         this.cartDataObs$.next({...this.cartDataServer});
-      }  // END of ELSE
+      }  
 
 
     });
@@ -216,7 +216,7 @@ export class CartService {
         this.cartDataObs$.next({...this.cartDataServer});
       }
     }
-    // If the user doesn't want to delete the product, hits the CANCEL button
+    // Si el usuario no quiere eliminar el producto, presione el botón CANCELAR
     else {
       return;
     }
