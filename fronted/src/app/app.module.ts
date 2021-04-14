@@ -40,7 +40,7 @@ import { AboutComponent } from './about/about.component';
     NgxSpinnerModule,
     ToastrModule.forRoot(),
     // PARA PODERLO INICIAR QUITO ESTO< UNA VEZ INICIADO LO PONGO DE NUEVO 
-    //ReactiveFormsModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

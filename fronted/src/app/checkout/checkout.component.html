@@ -17,7 +17,7 @@
         <div class="col-sm-12">
             <!-- PARA PODERLO INICIAR QUITO ESTO< UNA VEZ INICIADO LO PONGO DE NUEVO -->
             <!-- [formGroup]="data" -->
-            <form  class="col-sm-12" (ngSubmit)="enviar(data.value)">
+            <form [formGroup]="data" class="col-sm-12" (ngSubmit)="enviar(data.value)">
                 <div class="col-sm-6">
                     <!-- Billing Details -->
                     <div class="billing-details">
@@ -78,10 +78,10 @@
                             <div><strong class="order-total">{{cartTotal | currency:'USD' }}</strong></div>
                         </div>
                     </div>
-
+                    
                     <button type="submit" class="btn btn-success btn-block" [disabled]="cartTotal <= 0 " [disabled]="data.invalid" >Pagar Ahora </button>
                 </div>
-    
+                
             </form>
 
 
@@ -89,11 +89,21 @@
         <!-- /row -->
     </div>
     <!-- /container -->
+
 </div>
 <!-- /SECTION -->
+<div class="container">
+    <div class="row" >
+        <div class="col col-sm-6">
+            <div #paypal ></div>
+        </div>
+    </div>
+    
+</div>
+
+
 
 <div class="text-center my-5" *ngIf="cartData.total <= 0">
     <h4>El carrito esta Vacio</h4>
     <button class="btn btn-primary btn-lg mt-3" routerLink="/">Ir a la Tienda</button>
   </div>
-  
