@@ -17,7 +17,7 @@
         <div class="col-sm-12">
             <!-- PARA PODERLO INICIAR QUITO ESTO< UNA VEZ INICIADO LO PONGO DE NUEVO -->
             <!-- [formGroup]="data" -->
-            <form [formGroup]="data" class="col-sm-12" (ngSubmit)="enviar(data.value)">
+            <form class="col-sm-12" (ngSubmit)="enviar(data.value)">
                 <div class="col-sm-6">
                     <!-- Billing Details -->
                     <div class="billing-details">
@@ -91,8 +91,26 @@
     <!-- /container -->
 
 </div>
-<!-- /SECTION -->
-<div class="container">
+
+
+<div *ngIf="cartData.total <= 0">
+    <div class="container">
+        <div class="row">
+            <div class="col col-sm-6 mt-5">
+                <h4 class="text-center">El carrito esta Vacio</h4>
+                <button class="btn btn-primary btn-block btn-lg mt-3" routerLink="/">Ir a la Tienda</button>
+                <img class="d-flex  align-self-center container" src="../../assets/img/carrito_vacio.png" alt="Carrito" width="50%" >
+                <h3 class="text-center">Hacer una donacion de 1$ USD</h3>
+            </div>
+
+
+
+        </div>
+    </div>
+  </div>
+
+  <!-- /SECTION -->
+<div class="container mt-5" >
     <div class="row" >
         <div class="col col-sm-6">
             <div #paypal ></div>
@@ -100,10 +118,3 @@
     </div>
     
 </div>
-
-
-
-<div class="text-center my-5" *ngIf="cartData.total <= 0">
-    <h4>El carrito esta Vacio</h4>
-    <button class="btn btn-primary btn-lg mt-3" routerLink="/">Ir a la Tienda</button>
-  </div>

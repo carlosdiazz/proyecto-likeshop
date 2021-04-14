@@ -58,6 +58,7 @@ export class CheckoutComponent implements OnInit {
               descipcion: this.producto.descripcion,
               amount:{
                 currency_code: "USD",
+                //SI cart total es igual a 1 va a valer 1, si no es vale la cantidad normal
                 value: this.cartTotal
               }
             }
